@@ -7,7 +7,6 @@ public final class Calculations {
     private Calculations(){}
 
     public static String calculate(String expr) {
-        System.out.println(expr);
         try {
             ScriptEngineManager manager = new ScriptEngineManager();
             ScriptEngine jsEngine = manager
@@ -15,13 +14,12 @@ public final class Calculations {
 
             return jsEngine.eval(expr).toString();
         } catch (Exception ex) {
-            ex.printStackTrace();
             return "!_ERROR_!";
         }
     }
     public static String calculateSQRT(String numExpr){
-        double num = Double.parseDouble(numExpr);
-        double sqrtOfNum = Math.sqrt(num);
+        double doubleNum = Double.parseDouble(numExpr);
+        double sqrtOfNum = Math.sqrt(doubleNum);
         return String.valueOf(sqrtOfNum);
     }
 }

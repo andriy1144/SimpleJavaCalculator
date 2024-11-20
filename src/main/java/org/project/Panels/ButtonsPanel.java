@@ -2,8 +2,6 @@ package org.project.Panels;
 
 import org.project.Functions.Calculations;
 import org.graalvm.collections.Pair;
-import org.project.Funny;
-import org.project.Funny2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,18 +33,18 @@ public class ButtonsPanel extends JPanel {
                 "-/+", "0", ".", "/"
         };
 
-        for (String item : operationsAndNumbers) {
-            JButton button = new JButton(item);
+        for (String buttonSymbol : operationsAndNumbers) {
+            JButton button = new JButton(buttonSymbol);
             button.setFont(buttonFont);
             button.setBackground(Color.WHITE);
 
-            if(item.length() > 1 || item.charAt(0) == '=' || item.charAt(0) == 'C'){
+            if(buttonSymbol.length() > 1 || buttonSymbol.charAt(0) == '=' || buttonSymbol.charAt(0) == 'C'){
                 button.addActionListener(new OperationButtonAction());
             }else{
                 button.addActionListener(new NumberButtonAction());
             }
 
-            if (item.equals("=")) {
+            if (buttonSymbol.equals("=")) {
                 button.setBackground(Color.ORANGE);
             }
 
@@ -57,17 +55,16 @@ public class ButtonsPanel extends JPanel {
     private static class NumberButtonAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            JButton btn = (JButton) e.getSource();
-            mainTextArea.append(btn.getText());
+            JButton numberButton = (JButton) e.getSource();
+            mainTextArea.append(numberButton.getText());
         }
     }
     private static class OperationButtonAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            JButton btn = (JButton) e.getSource();
-            System.out.println(btn.getText() + " is pressed!");
+            JButton operationButton = (JButton) e.getSource();
 
-            switch (btn.getText()){
+            switch (operationButton.getText()){
                 case "=" -> doEqualOperation();
                 case "C" -> doClearOperation();
                 case "CA" -> doClearAllOperation();
